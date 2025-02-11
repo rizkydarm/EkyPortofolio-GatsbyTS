@@ -1,24 +1,27 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { GlobalStyles } from '@mui/material';
+import { Box, GlobalStyles } from '@mui/material';
 import theme from '../styles/theme';
 import Navbar from '../components/Navbar';
 
 // Define global styles as a plain object
 const globalStyles = {
+  '@import': "url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')",
   body: {
     margin: 0,
     padding: 0,
-    fontFamily: 'Roboto, Arial, sans-serif',
-    backgroundColor: '#f5f5f5', // Light gray background
+    fontFamily: 'Roboto, sans-serif',
+    backgroundColor: '#f5f5f5',
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
   },
   a: {
-    textDecoration: 'none', // Remove underline from links
-    color: 'inherit', // Inherit text color
+    textDecoration: 'none',
+    color: 'inherit',
   },
   '*': {
-    boxSizing: 'border-box', // Ensure consistent box sizing
+    boxSizing: 'border-box',
   },
 };
 
@@ -30,6 +33,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* Apply global styles */}
       <GlobalStyles styles={globalStyles} />
       <Navbar />
+      <Box sx={{ height: 60 }} />
       <main>{children}</main>
     </ThemeProvider>
   );
