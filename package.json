@@ -1,8 +1,8 @@
 {
-  "name": "rizky-portfolio",
+  "name": "rizky_portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "rizky-portfolio",
+  "description": "Rizky Portfolio",
   "author": "rizkyeky",
   "keywords": [
     "gatsby"
@@ -16,7 +16,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.3",
+    "@mui/material": "^6.4.3",
     "gatsby": "^5.14.1",
+    "gatsby-plugin-manifest": "^5.14.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
