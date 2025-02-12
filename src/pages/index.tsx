@@ -1,9 +1,10 @@
 import * as React from 'react';
 import BasicCard from "../components/Card";
-import Grid from '@mui/material/Grid';
 import Layout from '../components/Layout';
 import { Box, Grid2 } from '@mui/material';
 import SEO from '../components/SEO';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase"; 
 
 const ports = [
 	{
@@ -56,6 +57,21 @@ const ports = [
 	}
 ]
 
+const addProjectsToFirestore = async () => {
+	try {
+	  const projectsCollection = collection(db, "portfolio"); // Reference to the "projects" collection
+  
+	  for (const project of ports) {
+		await addDoc(projectsCollection, project); // Add each project as a document
+		console.log(`Added project: ${project.title}`);
+	  }
+  
+	  console.log("All projects added successfully!");
+	} catch (error) {
+	  console.error("Error adding projects to Firestore: ", error);
+	}
+  };
+
 function GridView() {
 	return (
 		<Box sx={{ 
@@ -81,6 +97,7 @@ function GridView() {
 }
 
 const HomePage = () => {
+	addProjectsToFirestore();
 	return (
 		<Layout>
 			<SEO title="Rizky Portfolio" />

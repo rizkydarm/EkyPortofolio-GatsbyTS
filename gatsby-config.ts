@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#19D9B6`,
-        icon: `/favicon.png`,
+        icon: `static/favicon.png`,
       },
     },
   ],
