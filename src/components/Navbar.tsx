@@ -1,8 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Box, Avatar, Stack } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, Button, Box, Avatar, Stack } from '@mui/material';
 import { Link } from 'gatsby';
-import { StaticImage } from 'gatsby-plugin-image';
 
 const pages = [
     {
@@ -31,14 +29,10 @@ const Navbar = () => {
         }}
     >
       <Toolbar disableGutters>
-        <StaticImage
-            src="../images/favicon.png"
-            alt="logo"
-            placeholder="blurred"
-            layout="constrained"
-            width={40}
-            height={40}
-            style={{ marginInline: '16px' }}
+        <img src={"/favicon.png"} alt={"logo"}
+          width={40}
+          height={40}
+          style={{ marginInline: '16px' }}
         />
         <Stack spacing={0} direction="row">
           {pages.map((item, index) => (
@@ -59,14 +53,9 @@ const Navbar = () => {
         <Box sx={{ flexGrow: 1 }} />
         <Avatar
           alt="Rizky"
+          src="/avatar.jpg"
           style={{ marginInline: '16px' }}
-        >
-          <StaticImage
-            src="../images/avatar.jpg"
-            alt="Rizky"
-            placeholder="blurred"
-          />
-        </Avatar>
+        />
       </Toolbar>
     </AppBar>
   );

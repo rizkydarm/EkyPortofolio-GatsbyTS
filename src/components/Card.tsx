@@ -2,12 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Grid2, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
-import FlutterIcon from '../svg/flutter';
-import AppleIcon from '../svg/apple';
-import AndroidIcon from '../svg/android';
-
-const emails = ['Add account', 'Profile', 'Logout'];
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid2 } from '@mui/material';
 
 interface SimpleDialogProps {
   open: boolean;
@@ -33,19 +28,19 @@ function SimpleDialog(props: SimpleDialogProps) {
       scroll="paper"
       aria-labelledby="scroll-dialog-title"
       aria-describedby="scroll-dialog-description"
-      maxWidth="xl" 
+      maxWidth="xl"
       fullWidth
-      >
-      <DialogTitle id="scroll-dialog-title">Images</DialogTitle>
+    >
+      <DialogTitle id="scroll-dialog-title" style={{ fontWeight: 'bold', color: 'black' }} >IMAGES</DialogTitle>
       <DialogContent dividers>
         <Grid2 container id="scroll-dialog-description"
-        rowSpacing={2} columnSpacing={2}
+          rowSpacing={2} columnSpacing={2} 
           style={{ overflowY: 'auto' }}>
           {Array.from({ length: 10 }).map((_, index) => (
-            <Grid2 size={12/5} key={index}>
+            <Grid2 size={12 / 5} key={index}>
               <Box
                 sx={{
-                  height: 400,
+                  height: '500px',
                   backgroundColor: 'red',
                   display: 'block',
                   margin: 'auto'
@@ -63,10 +58,11 @@ function SimpleDialog(props: SimpleDialogProps) {
 }
 
 
-const BasicCard = ({ title, description, link }: {
+const BasicCard = ({ title, description, link, icons }: {
   title: string;
   description: string;
   link: string;
+  icons?: string[];
 }) => {
 
   const [open, setOpen] = React.useState(false);
@@ -80,7 +76,7 @@ const BasicCard = ({ title, description, link }: {
   };
 
   return (
-    <Card variant='outlined' sx={{ height: 280 }}>
+    <Card variant='outlined' sx={{ height: 300 }}>
       <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
         <div>
           <Typography variant="h5" component="div" fontWeight={'bold'}>
@@ -98,16 +94,29 @@ const BasicCard = ({ title, description, link }: {
           >
             {description}
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <FlutterIcon width={40} height={40} />
-            <AppleIcon width={40} height={40} />
-            <AndroidIcon width={40} height={40} />
-          </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+        <Box sx={{ flexGrow: 1 }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+          {icons?.map((icon) => {
+            switch (icon) {
+              case 'flutter':
+                return <img src={"/flutter.svg"} alt={icon} 
+                  width={32} height={40} />;
+              case 'apple':
+                return <img src={"/apple.svg"} alt={icon} 
+                  width={40} height={40} />;
+              case 'android':
+                return <img src={"/android.svg"} alt={icon} 
+                  width={40} height={40} />;
+              default:
+                return null;
+            }
+          })}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexDirection: 'row', gap: '16px' }}>
           <Button href={`https://${link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
             sx={{
-              width: '48%',
+              width: '100%',
               color: 'primary', fontWeight: 'bold'
             }}
           >
@@ -116,7 +125,7 @@ const BasicCard = ({ title, description, link }: {
           <Button
             variant='outlined'
             sx={{
-              width: '48%',
+              width: '100%',
               color: 'primary',
               fontWeight: 'bold'
             }}
