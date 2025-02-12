@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { GlobalStyles } from '@mui/material';
 import Navbar from '../components/Navbar';
+import SEO from './SEO';
 
 const globalStyles = {
   '@import': "url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')",
@@ -38,12 +39,13 @@ const theme = createTheme({
   },
 });
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode, name: string }> = ({ children, name }) => {
   return (
     <ThemeProvider theme={theme}>
+      <SEO title="Rizky Portfolio" />
       <CssBaseline />
       <GlobalStyles styles={globalStyles} />
-      <Navbar />
+      <Navbar name={name} />
       <div style={{ height: 60 }} />
       <main>{children}</main>
     </ThemeProvider>

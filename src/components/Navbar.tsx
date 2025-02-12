@@ -17,7 +17,7 @@ const pages = [
     }
   ];
 
-const Navbar = () => {
+const Navbar: React.FC<{ name: string }> = ({ name }) => {
   return (
     <AppBar 
         position="fixed"
@@ -40,6 +40,7 @@ const Navbar = () => {
               key={item.name}
               component={Link}
               to={item.link}
+              variant={name === item.name ? 'outlined' : 'text'}
               sx={{ 
                 color: 'black', 
                 fontWeight: 'bold',

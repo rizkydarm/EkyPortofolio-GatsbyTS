@@ -3,10 +3,9 @@ import Layout from '../components/Layout';
 import { Button } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 
-
 const CVPage = () => {
   return (
-    <Layout>
+    <Layout name="My CV">
       <div style={{ position: 'fixed', margin: '16px'}} >
         <a href="/RizkyCV.pdf" download="RizkyCV.pdf" style={{ textDecoration: 'none' }}>
           <Button variant="contained" endIcon={<DownloadIcon />}>

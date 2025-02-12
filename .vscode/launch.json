@@ -5,36 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Gatsby develop",
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/src/pages/index.tsx",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Gatsby",
-            "program": "${workspaceFolder}/node_modules/.bin/gatsby",
+            "program": "${workspaceRoot}/node_modules/.bin/gatsby",
             "args": ["develop"],
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": null,
             "env": {
-                "NODE_ENV": "development"
+              "PARCEL_WORKERS": "0",
+              "GATSBY_CPU_COUNT": "1",
             },
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
-        }
+            "runtimeArgs": ["--nolazy"],
+            "console": "integratedTerminal"
+          },
+          {
+            "name": "Gatsby build",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/.bin/gatsby",
+            "args": ["build"],
+            "env": {
+              "PARCEL_WORKERS": "0",
+              "GATSBY_CPU_COUNT": "1",
+            },
+            "runtimeArgs": ["--nolazy"],
+            "console": "integratedTerminal"
+          }
     ]
 }

@@ -57,20 +57,20 @@ const ports = [
 	}
 ]
 
-const addProjectsToFirestore = async () => {
-	try {
-	  const projectsCollection = collection(db, "portfolio"); // Reference to the "projects" collection
+// const addProjectsToFirestore = async () => {
+// 	try {
+// 	  const projectsCollection = collection(db, "portfolio"); // Reference to the "projects" collection
   
-	  for (const project of ports) {
-		await addDoc(projectsCollection, project); // Add each project as a document
-		console.log(`Added project: ${project.title}`);
-	  }
+// 	  for (const project of ports) {
+// 		await addDoc(projectsCollection, project); // Add each project as a document
+// 		console.log(`Added project: ${project.title}`);
+// 	  }
   
-	  console.log("All projects added successfully!");
-	} catch (error) {
-	  console.error("Error adding projects to Firestore: ", error);
-	}
-  };
+// 	  console.log("All projects added successfully!");
+// 	} catch (error) {
+// 	  console.error("Error adding projects to Firestore: ", error);
+// 	}
+//   };
 
 function GridView() {
 	return (
@@ -97,9 +97,9 @@ function GridView() {
 }
 
 const HomePage = () => {
-	addProjectsToFirestore();
+	// addProjectsToFirestore();
 	return (
-		<Layout>
+		<Layout name="My Portfolio">
 			<SEO title="Rizky Portfolio" />
 			<GridView />
 		</Layout>
