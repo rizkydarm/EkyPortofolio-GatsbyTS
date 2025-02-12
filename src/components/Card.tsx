@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import FlutterIcon from '../svg/flutter';
 
 const BasicCard = ({ title, description, link }: {
   title: string;
@@ -28,6 +29,12 @@ const BasicCard = ({ title, description, link }: {
           >
             {description}
           </Typography>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <FlutterIcon />
+            <Typography variant="body2" component="div" fontWeight={'bold'}>
+              Flutter
+            </Typography>
+          </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           <Button href={`https://${link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
