@@ -4,7 +4,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Rizky Portfolio`,
     siteUrl: `https://rizky-port.web.app`,
-    description: `A portfolio website built with Gatsby, React, TypeScript, and Material-UI.`,
+    description: 'A portfolio website built with Gatsby, React, TypeScript, and Material-UI.',
     author: `Rizky Darmawan`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

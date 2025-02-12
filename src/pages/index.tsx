@@ -3,6 +3,7 @@ import BasicCard from "../components/Card";
 import Grid from '@mui/material/Grid';
 import Layout from '../components/Layout';
 import { Box, Grid2 } from '@mui/material';
+import SEO from '../components/SEO';
 
 const ports = [
 	{
@@ -82,6 +83,7 @@ function GridView() {
 const HomePage = () => {
 	return (
 		<Layout>
+			<SEO title="Rizky Portfolio" />
 			<GridView />
 		</Layout>
 	);
