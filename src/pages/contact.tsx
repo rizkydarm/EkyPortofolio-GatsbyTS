@@ -1,36 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase"; // Import your initialized Firestore instance
-
-type PortfolioItem = {
-  id: string;
-  title: string;
-  description: string;
-  link: string;
-  icons: string[];
-}
-
-// Function to fetch all documents from the "portfolio" collection
-const fetchPortfolioData = async () => {
-  try {
-    const portfolioCollection = collection(db, "portfolio"); // Reference to the "portfolio" collection
-    const querySnapshot = await getDocs(portfolioCollection); // Fetch all documents
-
-    const portfolioData: PortfolioItem[] = [];
-    querySnapshot.forEach((doc) => {
-      // Push each document's data along with its ID into the array
-      const port = doc.data() as PortfolioItem;
-      portfolioData.push({ id: doc.id, title: port.title, description: port.description, link: port.link, icons: port.icons });
-    });
-
-    console.log("Fetched Portfolio Data:", portfolioData);
-    return portfolioData; // Return the array of documents
-  } catch (error) {
-    console.error("Error fetching portfolio data: ", error);
-    throw error; // Re-throw the error for handling elsewhere if needed
-  }
-};
+import { PortfolioItem, fetchPortfolioData } from '../firebase'; // Import your PortfolioItem type
 
 const ContactPage = () => {
 

@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid2 } from '@mui/material';
+import { PortfolioItem } from '../firebase';
 
 interface SimpleDialogProps {
   open: boolean;
@@ -58,12 +59,7 @@ function SimpleDialog(props: SimpleDialogProps) {
 }
 
 
-const BasicCard = ({ title, description, link, icons }: {
-  title: string;
-  description: string;
-  link: string;
-  icons?: string[];
-}) => {
+const PortfolioCard: React.FC<{ portfolioItem: PortfolioItem }> = ({ portfolioItem }) => {
 
   const [open, setOpen] = React.useState(false);
 
@@ -80,7 +76,7 @@ const BasicCard = ({ title, description, link, icons }: {
       <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
         <div>
           <Typography variant="h5" component="div" fontWeight={'bold'}>
-            {title}
+            {portfolioItem.title}
           </Typography>
           <Typography
             sx={{
@@ -92,12 +88,12 @@ const BasicCard = ({ title, description, link, icons }: {
               WebkitBoxOrient: 'vertical',
             }}
           >
-            {description}
+            {portfolioItem.description}
           </Typography>
         </div>
         <Box sx={{ flexGrow: 1 }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-          {icons?.map((icon) => {
+          {portfolioItem.icons?.map((icon) => {
             switch (icon) {
               case 'flutter':
                 return <img src={"/flutter.svg"} alt={icon} 
@@ -108,13 +104,19 @@ const BasicCard = ({ title, description, link, icons }: {
               case 'android':
                 return <img src={"/android.svg"} alt={icon} 
                   width={40} height={40} />;
+              case 'python':
+                return <img src={"/python.svg"} alt={icon} 
+                  width={40} height={40} />;
+              case 'cpp':
+                return <img src={"/cpp.svg"} alt={icon} 
+                  width={40} height={40} />;
               default:
                 return null;
             }
           })}
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexDirection: 'row', gap: '16px' }}>
-          <Button href={`https://${link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
+          <Button href={`https://${portfolioItem.link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
             sx={{
               width: '100%',
               color: 'primary', fontWeight: 'bold'
@@ -143,4 +145,4 @@ const BasicCard = ({ title, description, link, icons }: {
   );
 }
 
-export default BasicCard;
+export default PortfolioCard;

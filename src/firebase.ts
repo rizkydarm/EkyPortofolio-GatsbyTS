@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -20,3 +21,33 @@ export const db = getFirestore(app);
 
 // Initialize Firebase Storage
 export const storage = getStorage(app);
+
+export type PortfolioItem = {
+    id: string;
+    orderid?: string;
+    title: string;
+    description: string;
+    link: string;
+    icons: string[];
+    images: string[];
+}
+
+export const fetchPortfolioData = async () => {
+    try {
+        const portfolioCollection = collection(db, "portfolio"); // Reference to the "portfolio" collection
+        const querySnapshot = await getDocs(portfolioCollection); // Fetch all documents
+
+        const portfolioData: PortfolioItem[] = [];
+        querySnapshot.forEach((doc) => {
+            // Push each document's data along with its ID into the array
+            const port = doc.data() as PortfolioItem;
+            portfolioData.push({ id: doc.id, orderid: port.orderid, title: port.title, description: port.description, link: port.link, icons: port.icons, images: port.images });
+        });
+
+        console.log("Fetched Portfolio Data:", portfolioData);
+        return portfolioData; // Return the array of documents
+    } catch (error) {
+        console.error("Error fetching portfolio data: ", error);
+        throw error; // Re-throw the error for handling elsewhere if needed
+    }
+};
