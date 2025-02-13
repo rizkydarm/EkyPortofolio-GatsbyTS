@@ -11,10 +11,10 @@ const pages = [
       name: 'My CV',
       link: '/cv',
     },
-    {
-      name: 'My Contact',
-      link: '/contact',
-    }
+    // {
+    //   name: 'My Contact',
+    //   link: '/contact',
+    // }
   ];
 
 const Navbar: React.FC<{ name: string }> = ({ name }) => {

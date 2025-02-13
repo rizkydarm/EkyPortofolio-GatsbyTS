@@ -4,6 +4,8 @@ import Layout from '../components/Layout';
 import { Box, CircularProgress, Grid2 } from '@mui/material';
 import SEO from '../components/SEO';
 import { PortfolioItem, fetchPortfolioData } from '../firebase';
+
+
 function GridView() {
 	const [portfolioData, setPortfolioData] = React.useState<PortfolioItem[]>([]);
 
@@ -41,7 +43,7 @@ function GridView() {
 					rowSpacing={2}
 					columnSpacing={2}>
 					{portfolioData.map((item) => (
-						<Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
+						<Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
 							<PortfolioCard portfolioItem={item} />
 						</Grid2>
 					))}

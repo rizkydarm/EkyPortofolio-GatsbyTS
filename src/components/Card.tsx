@@ -2,16 +2,18 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid2 } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid2, Skeleton } from '@mui/material';
 import { PortfolioItem } from '../firebase';
+import ImageFire from './ImageFire';
 
 interface SimpleDialogProps {
   open: boolean;
   handleClose: () => void;
+  images?: string[];
 }
 
 function SimpleDialog(props: SimpleDialogProps) {
-  const { handleClose, open } = props;
+  const { handleClose, open, images } = props;
 
   const descriptionElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
@@ -37,16 +39,9 @@ function SimpleDialog(props: SimpleDialogProps) {
         <Grid2 container id="scroll-dialog-description"
           rowSpacing={2} columnSpacing={2} 
           style={{ overflowY: 'auto' }}>
-          {Array.from({ length: 10 }).map((_, index) => (
-            <Grid2 size={12 / 5} key={index}>
-              <Box
-                sx={{
-                  height: '500px',
-                  backgroundColor: 'red',
-                  display: 'block',
-                  margin: 'auto'
-                }}
-              />
+          {(images ?? []).map((image, index) => (
+            <Grid2 size={12 / 4} key={index}>
+              <ImageFire image={image} />
             </Grid2>
           ))}
         </Grid2>
@@ -116,7 +111,7 @@ const PortfolioCard: React.FC<{ portfolioItem: PortfolioItem }> = ({ portfolioIt
           })}
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexDirection: 'row', gap: '16px' }}>
-          <Button href={`https://${portfolioItem.link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
+          <Button href={`${portfolioItem.link}`} target="_blank" rel="noopener noreferrer" variant='outlined'
             sx={{
               width: '100%',
               color: 'primary', fontWeight: 'bold'
@@ -138,6 +133,7 @@ const PortfolioCard: React.FC<{ portfolioItem: PortfolioItem }> = ({ portfolioIt
           <SimpleDialog
             open={open}
             handleClose={handleClose}
+            images={portfolioItem.images}
           />
         </div>
       </CardContent>

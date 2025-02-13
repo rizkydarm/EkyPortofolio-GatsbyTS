@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 
 // Your Firebase configuration
@@ -29,7 +29,7 @@ export type PortfolioItem = {
     description: string;
     link: string;
     icons: string[];
-    images: string[];
+    images?: string[];
 }
 
 export const fetchPortfolioData = async () => {
@@ -50,4 +50,20 @@ export const fetchPortfolioData = async () => {
         console.error("Error fetching portfolio data: ", error);
         throw error; // Re-throw the error for handling elsewhere if needed
     }
+};
+
+
+
+// Function to get the download URL for an image
+export const getImageUrl = async (imagePath: string) => {
+  try {
+    const storage = getStorage(); // Initialize Firebase Storage
+    const imageRef = ref(storage, imagePath); // Reference to the image file
+    const url = await getDownloadURL(imageRef); // Get the download URL
+    console.log("Image URL:", url);
+    return url;
+  } catch (error) {
+    console.error("Error fetching image URL:", error);
+    throw error;
+  }
 };
