@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "target": "port",
     "public": "public",
     "ignore": [
       "firebase.json",

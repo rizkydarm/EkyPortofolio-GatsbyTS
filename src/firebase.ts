@@ -32,6 +32,12 @@ export type PortfolioItem = {
     images?: string[];
 }
 
+export type CVItem = {
+  id: string;
+  name: string;
+  url: string;
+}
+
 export const fetchPortfolioData = async () => {
     try {
         const portfolioCollection = collection(db, "portfolio"); // Reference to the "portfolio" collection
@@ -52,18 +58,16 @@ export const fetchPortfolioData = async () => {
     }
 };
 
-
-
 // Function to get the download URL for an image
-export const getImageUrl = async (imagePath: string) => {
+export const getStorageFileUrl = async (imagePath: string) => {
   try {
     const storage = getStorage(); // Initialize Firebase Storage
     const imageRef = ref(storage, imagePath); // Reference to the image file
     const url = await getDownloadURL(imageRef); // Get the download URL
-    console.log("Image URL:", url);
+    console.log("Storage File URL:", url);
     return url;
   } catch (error) {
-    console.error("Error fetching image URL:", error);
+    console.error("Error fetching storage file URL:", error);
     throw error;
   }
 };

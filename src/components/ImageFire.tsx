@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getImageUrl } from "../firebase";
-import { Skeleton } from "@mui/material";  
+import { getStorageFileUrl } from "../firebase";
+import { Box, CircularProgress } from "@mui/material";  
 
-const ImageFire: React.FC<{ image: string }> = ({ image }) => {
+const ImageFire: React.FC<{ image: string, height?: number, width?: number }> = ({ image, height, width }) => {
     const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {
         const fetchImageUrl = async () => {
             try {
-                const url = await getImageUrl(image);
+                const url = await getStorageFileUrl(image);
                 setImageUrl(url);
             } catch (error) {
                 console.error("Failed to load image:", error);
@@ -22,12 +22,19 @@ const ImageFire: React.FC<{ image: string }> = ({ image }) => {
     return (
         <div>
             {imageUrl && imageUrl.length > 0 ?
-                <img src={imageUrl} alt={image} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src={imageUrl} alt={image} style={{ width: '100%', height: height ?? '100%', objectFit: 'contain' }} />
                 :
-                <Skeleton
-                    variant="rectangular"
-                    width={300} height={600}
-                />
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                    height={height ?? 600}
+                    width={width ?? '100%'}
+                >
+                    <CircularProgress />
+                </Box>
             }
         </div>
     );
